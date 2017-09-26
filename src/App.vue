@@ -15,11 +15,13 @@
 
 <script>
 
+  import Store from './store'
+
   export default {
     data() {
       return {
         title: 'A Todo List',
-//        items: [
+        items: Store.fetch(),
 //          {
 //            label: '去游泳',
 //            isFinished: true,
@@ -28,8 +30,17 @@
 //            label: '去黄山',
 //            isFinished: false,
 //          }
-//        ],
+
         newItem: '',
+      }
+    },
+    watch: {
+      items: {
+        handler: function (items) {
+//          console.log(val, oldVal);
+          Store.save(items);
+        },
+        deep: true //深层复制
       }
     },
     methods: {
