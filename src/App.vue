@@ -2,7 +2,7 @@
   <div id="app">
     <h1 v-html="title"></h1>
     <ul>
-      <li v-for="item in items">
+      <li v-for="item in items" v-bind:class='{finished:item.isFinished}'>
         {{item.label}}
       </li>
     </ul>
@@ -19,7 +19,7 @@
         items: [
           {
             label: '去游泳',
-            isFinished: false,
+            isFinished: true,
           },
           {
             label: '去黄山',
@@ -36,6 +36,10 @@
 </script>
 
 <style>
+  .finished{
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
   ul{
     margin:0;
     padding:0;
